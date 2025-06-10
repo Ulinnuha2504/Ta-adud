@@ -136,7 +136,23 @@ h6 {
   border-top-color: var(--surface-color);
   animation: php-email-form-loading 1s linear infinite;
 }
+.php-email-form select {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: #fff;
+  color: #495057;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
+/* Saat select difokuskan */
+.php-email-form select:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 @keyframes php-email-form-loading {
   0% {
     transform: rotate(0deg);
@@ -1516,6 +1532,8 @@ section,
 }
 
 .contact .php-email-form input[type=text],
+.contact .php-email-form input[type=date],
+.contact .php-email-form select:focus,
 .contact .php-email-form input[type=email],
 .contact .php-email-form textarea {
   font-size: 14px;
@@ -1528,13 +1546,18 @@ section,
 }
 
 .contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=date]:focus,
+.contact .php-email-form select:focus,
 .contact .php-email-form input[type=email]:focus,
 .contact .php-email-form textarea:focus {
   border-color: var(--accent-color);
 }
 
+
 .contact .php-email-form input[type=text]::placeholder,
+.contact .php-email-form input[type=date]::placeholder,
 .contact .php-email-form input[type=email]::placeholder,
+.contact .php-email-form select:focus,
 .contact .php-email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
