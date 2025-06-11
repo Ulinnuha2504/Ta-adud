@@ -51,99 +51,66 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <span>Dokumentasi</span>
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Form</h2>
+        <p>Mohon sertakan alasan / keterangan yang valid</p>
       </div><!-- End Section Title -->
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
           
 
-          <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
+          <div class="col-lg-12">
+          <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" enctype="multipart/form-data">
+            <div class="row gy-4">
 
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Nama Civitas</label>
-                  <select name="nama" id="nama" class="form-control">
-                    <option value="">-- Pilih Nama Ustadzah --</option>
-                    <option value="">Ustadzah Lala</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Tanggal Kejadian</label>
-                  <input type="date" class="form-control" name="tanggal" id="tanggal" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="subject-field" class="pb-2">Jenis Dokumentasi</label>
-                  <select name="nama" id="nama" class="form-control">
-                    <option value="">-- Pilih Nama Ustadzah --</option>
-                    <option value="">Izin</option>
-                    <option value="">Sakit</option>
-                    <option value="">Terlambat</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Tanggal Kejadian</label>
-                  <input type="file" class="form-control" name="tanggal" id="tanggal" required>
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Preview</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Keterangan/Alasan</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Upload Bukti Dokumentasi</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+              <div class="col-md-6">
+                <label for="nama-civitas" class="pb-2">Nama Civitas</label>
+                <select name="nama_civitas" id="nama-civitas" class="form-control" required>
+                  <option value="">-- Pilih Nama Ustadzah --</option>
+                  <option value="Ustadzah Lala">Ustadzah Lala</option>
+                </select>
               </div>
-            </form>
-          </div><!-- End Contact Form -->
-          <div class="col-lg-5">
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div><!-- End Info Item -->
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                </div>
-              </div><!-- End Info Item -->
+              <div class="col-md-6">
+                <label for="tanggal-kejadian" class="pb-2">Tanggal Kejadian</label>
+                <input type="date" class="form-control" name="tanggal" id="tanggal-kejadian" required>
+              </div>
 
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div><!-- End Info Item -->
+              <div class="col-md-6">
+                <label for="jenis-dokumentasi" class="pb-2">Jenis Dokumentasi</label>
+                <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-control" required>
+                  <option value="">-- Pilih Jenis Dokumentasi --</option>
+                  <option value="Izin">Izin</option>
+                  <option value="Sakit">Sakit</option>
+                  <option value="Terlambat">Terlambat</option>
+                  <option value="Tidak Absen">Tidak Absen</option>
+                  <option value="Cuti">Cuti</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="bukti-dokumentasi" class="pb-2">Upload Bukti Dokumentasi (PNG/JPG)</label>
+                <input type="file" class="form-control" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
+              </div>
 
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <div class="col-md-12">
+                <label for="preview" class="pb-2">Preview</label>
+                <div id="preview-image"></div> <!-- Preview Gambar yang di upload -->
+              </div>
+              <div class="col-md-12">
+                <label for="keterangan" class="pb-2">Keterangan/Alasan</label>
+                <textarea class="form-control" name="keterangan" rows="5" id="keterangan" required></textarea>
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                <button type="submit">Send Message</button>
+              </div>
+
             </div>
-          </div>
-
+          </form>
+          </div><!-- End Contact Form -->
         </div>
 
       </div>
@@ -153,66 +120,28 @@
   </main>
 
   <footer id="footer" class="footer">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">eNno</span>
+            <span class="sitename">Ta'adud</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Kota Salatiga</p>
+            <p>Jawa Tengah</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62 81229474752</span></p>
+            <p><strong>Email:</strong> <span>ulinnuhaulin48@gmail.com</span></p>
           </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-          </ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+          <p>Cipta Web Organization</p>
           <div class="social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -220,17 +149,14 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">eNno</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Ta'adud</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href=“https://themewagon.com>ThemeWagon
+      Develop by <a href="https://ulinnuha.my.id">Mauliannurzaidani
       </div>
     </div>
 
   </footer>
+
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -250,6 +176,36 @@
 
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <script>
+document.getElementById('bukti-dokumentasi').addEventListener('change', function(event) {
+  const preview = document.getElementById('preview-image');
+  preview.innerHTML = ''; // Kosongkan dulu preview sebelumnya
+
+  const file = event.target.files[0];
+
+  if(file) {
+    // Validasi tipe file
+    const fileType = file.type;
+    const validImageTypes = ['image/jpeg', 'image/png'];
+    if (!validImageTypes.includes(fileType)) {
+      alert('Hanya file PNG atau JPG yang diizinkan.');
+      event.target.value = ''; // Reset input file
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.style.maxWidth = '300px';
+      img.style.maxHeight = '300px';
+      img.style.marginTop = '10px';
+      preview.appendChild(img);
+    }
+    reader.readAsDataURL(file);
+  }
+});
+  </script>
 
 </body>
 
