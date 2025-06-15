@@ -23,6 +23,9 @@
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Main CSS File -->
   <link href="../assets/css/main.css" rel="stylesheet">
+  <!-- Select 2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body class="index-page">
@@ -56,25 +59,27 @@
       </div><!-- End Section Title -->
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
-          
-
           <div class="col-lg-12">
+            <?php
+              include "../koneksi.php";
+              $qdata = mysqli_query($koneksi,"SELECT id_karyawan as identitas, panggilan_karyawan as nama FROM karyawan ORDER by nama ASC;")
+            ?>
           <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" enctype="multipart/form-data">
             <div class="row gy-4">
-
               <div class="col-md-6">
                 <label for="nama-civitas" class="pb-2">Nama Civitas</label>
                 <select name="nama_civitas" id="nama-civitas" class="form-control" required>
-                  <option value="">-- Pilih Nama Ustadzah --</option>
-                  <option value="Ustadzah Lala">Ustadzah Lala</option>
+                  <option value="">-- Pilih Nama Civitas --</option>
+                  <?php
+                  while($data=mysqli_fetch_array($qdata)){?>
+                    <option value="<?= $data['identitas'];?>"><?= $data['nama'];?></option>
+                 <?php } ?>
                 </select>
               </div>
-
               <div class="col-md-6">
                 <label for="tanggal-kejadian" class="pb-2">Tanggal Kejadian</label>
                 <input type="date" class="form-control" name="tanggal" id="tanggal-kejadian" required>
               </div>
-
               <div class="col-md-6">
                 <label for="jenis-dokumentasi" class="pb-2">Jenis Dokumentasi</label>
                 <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-control" required>
@@ -90,7 +95,6 @@
                 <label for="bukti-dokumentasi" class="pb-2">Upload Bukti Dokumentasi (PNG/JPG)</label>
                 <input type="file" class="form-control" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
               </div>
-
               <div class="col-md-12">
                 <label for="preview" class="pb-2">Preview</label>
                 <div id="preview-image"></div> <!-- Preview Gambar yang di upload -->
@@ -99,7 +103,6 @@
                 <label for="keterangan" class="pb-2">Keterangan/Alasan</label>
                 <textarea class="form-control" name="keterangan" rows="5" id="keterangan" required></textarea>
               </div>
-
               <div class="col-md-12 text-center">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
@@ -173,6 +176,8 @@
   <script src="../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+<!-- SELECT 2 -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
