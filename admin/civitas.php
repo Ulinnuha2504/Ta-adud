@@ -47,7 +47,7 @@
                                             <td><?= $data['alamat_karyawan'];?></td>
                                             <td><?= $data['kontak_karyawan'];?></td>
                                             <td><?= $data['tglmasuk_karyawan'];?></td>
-                                            <td>aksi</td>
+                                            <td><a href="index.php?page=ecivitas" class="btn btn-primary btn-sm">Edit</a></td>
 
                                         </tr>
                                                 <?php
