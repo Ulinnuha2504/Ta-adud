@@ -43,7 +43,6 @@
       </nav>
 
       <a class="btn-getstarted" href="../">Back to Home</a>
-
     </div>
   </header>
 
@@ -64,7 +63,7 @@
               include "../koneksi.php";
               $qdata = mysqli_query($koneksi,"SELECT id_karyawan as identitas, panggilan_karyawan as nama FROM karyawan ORDER by nama ASC;")
             ?>
-          <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" enctype="multipart/form-data">
+          <form action="../act.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" enctype="multipart/form-data">
             <div class="row gy-4">
               <div class="col-md-6">
                 <label for="nama-civitas" class="pb-2">Nama Civitas</label>
@@ -107,6 +106,8 @@
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
+                
+            
 
                 <button type="submit">Send Message</button>
               </div>
