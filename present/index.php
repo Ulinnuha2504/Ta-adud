@@ -63,57 +63,61 @@
               include "../koneksi.php";
               $qdata = mysqli_query($koneksi,"SELECT id_karyawan as identitas, panggilan_karyawan as nama FROM karyawan ORDER by nama ASC;")
             ?>
-          <form action="../act.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200" enctype="multipart/form-data">
-            <div class="row gy-4">
-              <div class="col-md-6">
-                <label for="nama-civitas" class="pb-2">Nama Civitas</label>
-                <select name="nama_civitas" id="nama-civitas" class="form-control" required>
-                  <option value="">-- Pilih Nama Civitas --</option>
-                  <?php
-                  while($data=mysqli_fetch_array($qdata)){?>
-                    <option value="<?= $data['identitas'];?>"><?= $data['nama'];?></option>
-                 <?php } ?>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label for="tanggal-kejadian" class="pb-2">Tanggal Kejadian</label>
-                <input type="date" class="form-control" name="tanggal" id="tanggal-kejadian" required>
-              </div>
-              <div class="col-md-6">
-                <label for="jenis-dokumentasi" class="pb-2">Jenis Dokumentasi</label>
-                <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-control" required>
-                  <option value="">-- Pilih Jenis Dokumentasi --</option>
-                  <option value="Izin">Izin</option>
-                  <option value="Sakit">Sakit</option>
-                  <option value="Terlambat">Terlambat</option>
-                  <option value="Tidak Absen">Tidak Absen</option>
-                  <option value="Cuti">Cuti</option>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label for="bukti-dokumentasi" class="pb-2">Upload Bukti Dokumentasi (PNG/JPG)</label>
-                <input type="file" class="form-control" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
-              </div>
-              <div class="col-md-12">
-                <label for="preview" class="pb-2">Preview</label>
-                <div id="preview-image"></div> <!-- Preview Gambar yang di upload -->
-              </div>
-              <div class="col-md-12">
-                <label for="keterangan" class="pb-2">Keterangan/Alasan</label>
-                <textarea class="form-control" name="keterangan" rows="5" id="keterangan" required></textarea>
-              </div>
-              <div class="col-md-12 text-center">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-                
-            
+     <form action="../act.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <label for="nama-civitas" class="form-label">Nama Civitas</label>
+      <select name="nama_civitas" id="nama-civitas" class="form-select" required>
+        <option value="">-- Pilih Nama Civitas --</option>
+        <?php while($data = mysqli_fetch_array($qdata)) { ?>
+          <option value="<?= $data['identitas']; ?>"><?= $data['nama']; ?></option>
+        <?php } ?>
+      </select>
+      <div class="invalid-feedback">Silakan pilih nama civitas.</div>
+    </div>
 
-                <button type="submit">Send Message</button>
-              </div>
+    <div class="col-md-6">
+      <label for="tanggal-kejadian" class="form-label">Tanggal Kejadian</label>
+      <input type="date" class="form-control" name="tanggal" id="tanggal-kejadian" required>
+      <div class="invalid-feedback">Tanggal wajib diisi.</div>
+    </div>
 
-            </div>
-          </form>
+    <div class="col-md-6">
+      <label for="jenis-dokumentasi" class="form-label">Jenis Dokumentasi</label>
+      <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-select" required>
+        <option value="">-- Pilih Jenis Dokumentasi --</option>
+        <option value="Izin">Izin</option>
+        <option value="Sakit">Sakit</option>
+        <option value="Terlambat">Terlambat</option>
+        <option value="Tidak Absen">Tidak Absen</option>
+        <option value="Cuti">Cuti</option>
+      </select>
+      <div class="invalid-feedback">Jenis dokumentasi harus dipilih.</div>
+    </div>
+
+    <div class="col-md-6">
+      <label for="bukti-dokumentasi" class="form-label">Upload Bukti Dokumentasi (PNG/JPG)</label>
+      <input type="file" class="form-control" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
+      <div class="invalid-feedback">Silakan upload bukti dalam format gambar.</div>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Preview Gambar</label>
+      <div id="preview-image" class="border rounded p-2" style="min-height:100px;"></div>
+    </div>
+
+    <div class="col-12">
+      <label for="keterangan" class="form-label">Keterangan/Alasan</label>
+      <textarea class="form-control" name="keterangan" id="keterangan" rows="4" required></textarea>
+      <div class="invalid-feedback">Keterangan harus diisi.</div>
+    </div>
+
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+    </div>
+  </div>
+</form>
+
           </div><!-- End Contact Form -->
         </div>
 
@@ -183,6 +187,24 @@
   <!-- Main JS File -->
   <script src="../assets/js/main.js"></script>
   <script>
+document.getElementById("bukti-dokumentasi").addEventListener("change", function (event) {
+  const preview = document.getElementById("preview-image");
+  preview.innerHTML = ""; // Bersihkan preview sebelumnya
+  const file = event.target.files[0];
+  if (file && file.type.match("image.*")) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      img.classList.add("img-fluid", "rounded", "mt-2");
+      img.style.maxHeight = "300px";
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+  <!-- <script>
 document.getElementById('bukti-dokumentasi').addEventListener('change', function(event) {
   const preview = document.getElementById('preview-image');
   preview.innerHTML = ''; // Kosongkan dulu preview sebelumnya
@@ -211,7 +233,7 @@ document.getElementById('bukti-dokumentasi').addEventListener('change', function
     reader.readAsDataURL(file);
   }
 });
-  </script>
+  </script> -->
 
 </body>
 
