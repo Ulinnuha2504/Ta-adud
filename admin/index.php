@@ -66,7 +66,7 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="#">Bulan Sekarang</a>
+                                    <a class="nav-link" href="index.php?page=dokumentasi">Bulan Sekarang</a>
                                     <a class="nav-link" href="#">Semua</a>
                                 </nav>
                             </div>
@@ -107,11 +107,11 @@
                 include 'civitasedit.php';
             } 
             
-             // Pelanggan
-             elseif ($_GET['page'] == 'pelanggan') {
-                include 'pelanggan.php';
-            } elseif ($_GET['page'] == 'pelangganedit') {
-                include 'pelangganedit.php';
+             // Dokumentasi
+             elseif ($_GET['page'] == 'dokumentasi') {
+                include 'dokumentasi.php';
+            } elseif ($_GET['page'] == 'dokumentasidetail') {
+                include 'dokumentasidetail.php';
             } elseif ($_GET['page'] == 'pelanggantambah') {
                 include 'pelanggantambah.php';
             } elseif ($_GET['page'] == 'pelangganhapus') {
