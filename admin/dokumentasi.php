@@ -17,20 +17,22 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lengkap</th>
-                        <th>Panggilan</th>
-                        <th>JK</th>
-                        <th>Alamat</th>
+                        <th>Nama</th>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Keterangan</th>
+                        <th>Gambar</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Lengkap</th>
-                        <th>Panggilan</th>
-                        <th>JK</th>
-                        <th>Alamat</th>
+                        <th>Nama</th>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Keterangan</th>
+                        <th>Gambar</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -38,15 +40,19 @@
                     <?php
                     include ('../koneksi.php');
                     $no = 1;
-                    $query = mysqli_query($koneksi,"SELECT*FROM karyawan");
+                    $query = mysqli_query($koneksi,"SELECT*FROM dokumentasi inner JOIN karyawan on dokumentasi.id_karyawan=karyawan.id_karyawan");
                     while($d=mysqli_fetch_array($query)){?>
                     <tr>
                         <td><?= $no++;?></td>
-                        <td><?= $d['namalengkap_karyawan'];?></td>
                         <td><?= $d['panggilan_karyawan'];?></td>
-                        <td><?= $d['jk_karyawan'];?></td>
-                        <td><?= $d['alamat_karyawan'];?></td>
-                        <td><a href="index.php?page=detail" class="btn btn-sm btn-secondary">Detail</a></td>
+                        <td><?= $d['tanggal'];?></td>
+                        <td><?= $d['jenis'];?></td>
+                        <td><?= $d['alasan'];?></td>
+                        <td>
+                            <img width="100px"src="arsip/<?= $d['gambar'];?>" alt="">
+                        </td>
+                        <td><?= $d['alasan'];?></td>
+
                     </tr>
                     <?php  }
                     ?>
@@ -55,3 +61,4 @@
         </div>
     </div>
 </div>
+
