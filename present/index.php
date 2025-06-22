@@ -56,70 +56,76 @@
         <h2>Form</h2>
         <p>Mohon sertakan alasan / keterangan yang valid</p>
       </div><!-- End Section Title -->
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-12">
-            <?php
-              include "../koneksi.php";
-              $qdata = mysqli_query($koneksi,"SELECT id_karyawan as identitas, panggilan_karyawan as nama FROM karyawan ORDER by nama ASC;")
-            ?>
-     <form action="../act.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
-  <div class="row g-3">
-    <div class="col-md-6">
-      <label for="nama-civitas" class="form-label">Nama Civitas</label>
-      <select name="nama_civitas" id="nama-civitas" class="form-select" required>
-        <option value="">-- Pilih Nama Civitas --</option>
-        <?php while($data = mysqli_fetch_array($qdata)) { ?>
-          <option value="<?= $data['identitas']; ?>"><?= $data['nama']; ?></option>
-        <?php } ?>
-      </select>
-      <div class="invalid-feedback">Silakan pilih nama civitas.</div>
-    </div>
+      <div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-lg p-4">
+        <h4 class="text-center mb-4">Form Dokumentasi Civitas</h4>
+        
+        <?php
+          include "../koneksi.php";
+          $qdata = mysqli_query($koneksi,"SELECT id_karyawan as identitas, panggilan_karyawan as nama FROM karyawan ORDER BY nama ASC;");
+        ?>
 
-    <div class="col-md-6">
-      <label for="tanggal-kejadian" class="form-label">Tanggal Kejadian</label>
-      <input type="date" class="form-control" name="tanggal" id="tanggal-kejadian" required>
-      <div class="invalid-feedback">Tanggal wajib diisi.</div>
-    </div>
+        <form action="../act.php" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <label for="nama-civitas" class="form-label">Nama Civitas</label>
+              <select name="nama_civitas" id="nama-civitas" class="form-select form-select-lg" required>
+                <option value="">-- Pilih Nama Civitas --</option>
+                <?php while($data = mysqli_fetch_array($qdata)) { ?>
+                  <option value="<?= $data['identitas']; ?>"><?= $data['nama']; ?></option>
+                <?php } ?>
+              </select>
+              <div class="invalid-feedback">Silakan pilih nama civitas.</div>
+            </div>
 
-    <div class="col-md-6">
-      <label for="jenis-dokumentasi" class="form-label">Jenis Dokumentasi</label>
-      <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-select" required>
-        <option value="">-- Pilih Jenis Dokumentasi --</option>
-        <option value="Izin">Izin</option>
-        <option value="Sakit">Sakit</option>
-        <option value="Terlambat">Terlambat</option>
-        <option value="Tidak Absen">Tidak Absen</option>
-        <option value="Cuti">Cuti</option>
-      </select>
-      <div class="invalid-feedback">Jenis dokumentasi harus dipilih.</div>
-    </div>
+            <div class="col-md-6">
+              <label for="tanggal-kejadian" class="form-label">Tanggal Kejadian</label>
+              <input type="date" class="form-control form-control-lg" name="tanggal" id="tanggal-kejadian" required>
+              <div class="invalid-feedback">Tanggal wajib diisi.</div>
+            </div>
 
-    <div class="col-md-6">
-      <label for="bukti-dokumentasi" class="form-label">Upload Bukti Dokumentasi (PNG/JPG)</label>
-      <input type="file" class="form-control" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
-      <div class="invalid-feedback">Silakan upload bukti dalam format gambar.</div>
-    </div>
+            <div class="col-md-6">
+              <label for="jenis-dokumentasi" class="form-label">Jenis Dokumentasi</label>
+              <select name="jenis_dokumentasi" id="jenis-dokumentasi" class="form-select form-select-lg" required>
+                <option value="">-- Pilih Jenis Dokumentasi --</option>
+                <option value="Izin">Izin</option>
+                <option value="Sakit">Sakit</option>
+                <option value="Terlambat">Terlambat</option>
+                <option value="Tidak Absen">Tidak Absen</option>
+                <option value="Cuti">Cuti</option>
+              </select>
+              <div class="invalid-feedback">Jenis dokumentasi harus dipilih.</div>
+            </div>
 
-    <div class="col-12">
-      <label class="form-label">Preview Gambar</label>
-      <div id="preview-image" class="border rounded p-2" style="min-height:100px;"></div>
-    </div>
+            <div class="col-md-6">
+              <label for="bukti-dokumentasi" class="form-label">Upload Bukti Dokumentasi (PNG/JPG)</label>
+              <input type="file" class="form-control form-control-lg" name="bukti_dokumentasi" id="bukti-dokumentasi" accept=".png,.jpg,.jpeg" required>
+              <div class="invalid-feedback">Silakan upload bukti dalam format gambar.</div>
+            </div>
 
-    <div class="col-12">
-      <label for="keterangan" class="form-label">Keterangan/Alasan</label>
-      <textarea class="form-control" name="keterangan" id="keterangan" rows="4" required></textarea>
-      <div class="invalid-feedback">Keterangan harus diisi.</div>
-    </div>
+            <div class="col-12">
+              <label class="form-label">Preview Gambar</label>
+              <div id="preview-image" class="border rounded p-3" style="min-height:120px;"></div>
+            </div>
 
-    <div class="col-12 text-center">
-      <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+            <div class="col-12">
+              <label for="keterangan" class="form-label">Keterangan/Alasan</label>
+              <textarea class="form-control form-control-lg" name="keterangan" id="keterangan" rows="5" required></textarea>
+              <div class="invalid-feedback">Keterangan harus diisi.</div>
+            </div>
+
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-success btn-lg px-5 mt-3">Kirim</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</form>
+</div>
 
-          </div><!-- End Contact Form -->
-        </div>
 
       </div>
 
@@ -189,6 +195,25 @@
   <script>
 document.getElementById("bukti-dokumentasi").addEventListener("change", function (event) {
   const preview = document.getElementById("preview-image");
+  preview.innerHTML = "";
+  const file = event.target.files[0];
+  if (file && file.type.startsWith("image/")) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      img.classList.add("img-fluid", "rounded", "mt-2");
+      img.style.maxHeight = "300px";
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+
+  <!-- <script>
+document.getElementById("bukti-dokumentasi").addEventListener("change", function (event) {
+  const preview = document.getElementById("preview-image");
   preview.innerHTML = ""; // Bersihkan preview sebelumnya
   const file = event.target.files[0];
   if (file && file.type.match("image.*")) {
@@ -203,7 +228,7 @@ document.getElementById("bukti-dokumentasi").addEventListener("change", function
     reader.readAsDataURL(file);
   }
 });
-</script>
+</script> -->
   <!-- <script>
 document.getElementById('bukti-dokumentasi').addEventListener('change', function(event) {
   const preview = document.getElementById('preview-image');
