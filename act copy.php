@@ -3,7 +3,7 @@ include 'koneksi.php';
 
 $targetDir = "admin/arsip/";
 if (!is_dir($targetDir)) {
-    mkdir($targetDir, 0755, true); // aman, tidak pakai 777
+    mkdir($targetDir, 0777, true);
 }
 
 $id_karyawan = $_POST['nama_civitas'];
@@ -13,7 +13,6 @@ $alasan = $_POST['keterangan'];
 
 $id_karyawan_padded = str_pad($id_karyawan, 3, '0', STR_PAD_LEFT);
 
-// Cek duplikasi
 $cekQuery = "SELECT * FROM dokumentasi WHERE id_karyawan = '$id_karyawan' AND tanggal = '$tanggal'";
 $cekResult = mysqli_query($koneksi, $cekQuery);
 
@@ -21,6 +20,7 @@ if (mysqli_num_rows($cekResult) > 0) {
     echo "<script>
         alert('Data dokumentasi untuk tanggal ini sudah pernah diupload oleh karyawan ini.');
         window.location.href = './present';
+
     </script>";
     exit;
 }
@@ -41,29 +41,7 @@ if (in_array($fileExt, $allowedExt)) {
             $newFileName = $tanggalFormatted . $id_karyawan_padded . "." . $fileExt;
             $destination = $targetDir . $newFileName;
 
-            // === Kompresi dan Resize ===
-            $success = false;
-            if ($fileExt === 'jpg' || $fileExt === 'jpeg') {
-                $image = imagecreatefromjpeg($fileTmp);
-                if ($image) {
-                    $resized = imagescale($image, 1280); // Resize ke max lebar 1280px
-                    imagejpeg($resized ?: $image, $destination, 70); // Kompres kualitas 70%
-                    imagedestroy($image);
-                    if ($resized) imagedestroy($resized);
-                    $success = true;
-                }
-            } elseif ($fileExt === 'png') {
-                $image = imagecreatefrompng($fileTmp);
-                if ($image) {
-                    $resized = imagescale($image, 1280);
-                    imagepng($resized ?: $image, $destination, 7); // Kompres level 7
-                    imagedestroy($image);
-                    if ($resized) imagedestroy($resized);
-                    $success = true;
-                }
-            }
-
-            if ($success) {
+            if (move_uploaded_file($fileTmp, $destination)) {
                 $query = "INSERT INTO dokumentasi (id_karyawan, tanggal, jenis, alasan, gambar) 
                           VALUES ('$id_karyawan', '$tanggal', '$jenis', '$alasan', '$newFileName')";
                 $result = mysqli_query($koneksi, $query);
@@ -82,11 +60,10 @@ if (in_array($fileExt, $allowedExt)) {
 
             } else {
                 echo "<script>
-                    alert('Gagal memproses gambar.');
+                    alert('Gagal memindahkan file.');
                     window.history.back();
                 </script>";
             }
-
         } else {
             echo "<script>
                 alert('Ukuran file terlalu besar. Maksimal 5MB.');

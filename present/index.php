@@ -210,6 +210,31 @@ document.getElementById("bukti-dokumentasi").addEventListener("change", function
   }
 });
 </script>
+<script>
+document.querySelector('form').addEventListener('submit', function () {
+  // Cek apakah sudah ada overlay
+  if (!document.getElementById('upload-overlay')) {
+    const overlay = document.createElement('div');
+    overlay.id = 'upload-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.background = '#0008';
+    overlay.style.color = '#fff';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.fontSize = '20px';
+    overlay.style.zIndex = 9999;
+    overlay.innerText = 'Uploading...';
+
+    document.body.appendChild(overlay);
+  }
+});
+</script>
+
 
   <!-- <script>
 document.getElementById("bukti-dokumentasi").addEventListener("change", function (event) {
